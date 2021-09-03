@@ -63,5 +63,8 @@ Given that the addition of two n-bit numbers takes time roughly proportional to 
 
 ### Algorithm 3 to calculate F <sub>n</sub>
 
+We use matrix multiplication to calculate F <sub>n</sub>. We express each F <sub>i</sub> in the form of a 2*2 matrix.
+As in,
 
+$\left[\begin{array}{ccc}0 & 1\\1 & 0\end{array}\right]$
 
