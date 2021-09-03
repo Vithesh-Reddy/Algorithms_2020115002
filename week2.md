@@ -67,5 +67,6 @@ We use matrix multiplication to calculate F <sub>n</sub>. We express each F <sub
 As in,
 
 ![f0](f0.png)
+
 ![fn](fn.png)
 
