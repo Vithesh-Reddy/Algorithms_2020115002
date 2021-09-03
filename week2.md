@@ -66,5 +66,6 @@ Given that the addition of two n-bit numbers takes time roughly proportional to 
 We use matrix multiplication to calculate F <sub>n</sub>. We express each F <sub>i</sub> in the form of a 2*2 matrix.
 As in,
 
-[f0](/home/vithesh/Downloads/AAD/f0.png)
+![f0](f0.png)
+![fn](fn.png)
 
