@@ -66,7 +66,54 @@ Given that the addition of two n-bit numbers takes time roughly proportional to 
 We use matrix multiplication to calculate F <sub>n</sub>. We express each F <sub>i</sub> in the form of a 2*2 matrix.
 As in,
 
-![f0](f0.png)
+![fib_matrix_0](fib_matrix_0.png)
 
-![fn](fn.png)
+![fib_matrix_n](fib_matrix_n.png)
+
+#### Analysis:
+
+We observe that we can reach F <sub>n</sub> by multiplying the initial matrix by 2 for log(n) times. Also, multiplication involves n-bit integers. Therefore, if we assume the time complexity of multiplication is M(n), the total time complexity of fib3 is O(M(n)*log(n)).
+
+### Algorithm 4 to calculate F <sub>n</sub>
+
+We can use the direct formula for F <sub>n</sub>:
+
+![fib_formula](fib_formula.png)
+
+#### Analysis:
+
+We observe that we can reach F <sub>n</sub> by multiplying the irrational number by 2 for log(n) times. Also, multiplication involves n-bit irrationals. Therefore, if we assume the time complexity of multiplication is M(n), the total time complexity of fib3 is O(M(n)*log(n)). But this method is not preferred because multiplication of irrationals to higher powers might cause accuracy deficits.
+
+## Karatsuba algorithm for multiplication of two large numbers
+
+We use divide and conquer approach. Suppose x and y are two n-bit integers. As a first step
+toward multiplying x and y, split each of them into their left and right halves, which are n/2 bits long:
+
+x = 2<sup>n/2</sup>x<sub>L</sub> + x<sub>R</sub>
+y = 2<sup>n/2</sup>y<sub>L</sub> + y<sub>R</sub>
+
+xy = (2<sup>n/2</sup>x<sub>L</sub> + x<sub>R</sub>)(2<sup>n/2</sup>y<sub>L</sub> + y<sub>R</sub>)
+   = 2<sup>n</sup>x<sub>L</sub>y<sub>L</sub> + 2<sup>n/2</sup>((x<sub>L</sub> + x<sub>R</sub>)(y<sub>L</sub> + y<sub>R</sub>) - x<sub>L</sub>y<sub>L</sub> - x<sub>R</sub>y<sub>R</sub>) + x<sub>R</sub>y<sub>R</sub>
+
+```python
+function multiply(x, y)
+Input: n-bit positive integers x and y
+Output: Their product
+if n = 1: return xy
+x L , x R = leftmost [n/2], rightmost [n/2] bits of x
+y L , y R = leftmost [n/2], rightmost [n/2] bits of y
+P 1 = multiply(x L , y L )
+P 2 = multiply(x R , y R )
+P 3 = multiply(x L + x R , y L + y R )
+return P 1 × 2^(n) + (P 3 − P 1 − P 2 ) × 2^(n/2) + P 2
+```
+
+#### Analysis:
+
+The recurrence relation for the above algorithm is:
+
+T(n) = 3T(n/2) + O(n)
+
+The total time complexity comes out to be O(n<sup>1.59</sup>).
+
 
